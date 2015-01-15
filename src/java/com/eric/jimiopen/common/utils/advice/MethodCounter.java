@@ -1,4 +1,4 @@
-package com.eric.jimiopen.utils;
+package com.eric.jimiopen.common.utils.advice;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;

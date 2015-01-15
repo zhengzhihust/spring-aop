@@ -13,6 +13,6 @@ public class Serv implements IServ {
 	
 	@Override
 	public void doA(){
-		throw new MyException("111111111");
+		System.out.println("hello world");
 	}
 }

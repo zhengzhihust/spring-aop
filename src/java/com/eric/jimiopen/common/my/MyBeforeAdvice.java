@@ -8,6 +8,7 @@ public class MyBeforeAdvice implements MethodBeforeAdvice{
 
 	@Override
 	public void before(Method method, Object[] parameters, Object target) throws Throwable {
+		System.out.println("=======MyBeforeAdvice=======");
 		System.out.println(method.getName());
 		System.out.println(parameters);
 		System.out.println(target);

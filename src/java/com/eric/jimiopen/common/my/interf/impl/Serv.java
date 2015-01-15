@@ -1,6 +1,5 @@
 package com.eric.jimiopen.common.my.interf.impl;
 
-import com.eric.jimiopen.common.my.MyException;
 import com.eric.jimiopen.common.my.interf.IServ;
 
 public class Serv implements IServ {

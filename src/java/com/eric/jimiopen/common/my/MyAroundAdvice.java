@@ -9,6 +9,7 @@ import org.aopalliance.intercept.MethodInvocation;
 public class MyAroundAdvice implements MethodInterceptor{
 	private Set<MethodInvocation> set=new HashSet<MethodInvocation>();
 	public Object invoke(MethodInvocation method) throws Throwable {
+		System.out.println("=======MyAroundAdvice=======");
 		set.add(method);
 		Object result=method.proceed();
 		return result;

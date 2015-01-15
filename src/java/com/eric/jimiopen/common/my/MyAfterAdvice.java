@@ -6,6 +6,7 @@ import org.springframework.aop.AfterReturningAdvice;
 
 public class MyAfterAdvice implements AfterReturningAdvice {
 	public void afterReturning(Object result, Method method, Object[] parameter, Object target) throws Throwable {
+		System.out.println("=======MyAfterAdvice=======");
 		System.out.println("result:"+result);
 		System.out.println("method:"+method);
 		System.out.println("parameter:"+parameter);

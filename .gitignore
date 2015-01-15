@@ -1,4 +1,5 @@
 /.settings
-/build-lib
 /.classpath
 /.project
+/.gitignore
+/build-lib

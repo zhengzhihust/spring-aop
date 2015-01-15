@@ -5,8 +5,8 @@ import com.eric.jimiopen.common.my.interf.IServ;
 public class Serv implements IServ {
 	
 	@Override
-	public String[] doSth() {
-		System.out.println(this);
+	public String[] doSth(String str, Integer i, byte[] b) {
+		System.out.println("this:"+this.getClass().toString());
 		return new String[]{"cindy","guoguo","xixi"};
 	}
 	

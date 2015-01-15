@@ -8,7 +8,7 @@ public class MainTest {
 	public static void main(String[] args){
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {"classpath:spring-context.xml"});
 		IServ ser = (IServ) ctx.getBean("invoker");
-		ser.doSth();
+		ser.doSth("hello", 11, "fefwrf".getBytes());
 		try{
 			ser.doA();
 		} catch (Throwable t){

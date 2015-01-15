@@ -11,8 +11,6 @@ import com.eric.jimiopen.modules.method.MethodStats;
 
 
 /**
- * spring aop 锟斤拷锟斤拷 service & dao 锟接口碉拷锟斤拷
- * 
  * @author zhi.zheng 
  * @time 2015-1-7 11:04:20
  *

@@ -13,7 +13,7 @@ public class CountingAfterReturningAdvice extends MethodCounter implements After
 	private static final long serialVersionUID = 9053039361482004335L;
 
 	@Override
-	public void afterReturning(Object arg0, Method arg1, Object[] arg2, Object arg3) throws Throwable {
-		count(arg1);
+	public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+		count(method);
 	}
 }

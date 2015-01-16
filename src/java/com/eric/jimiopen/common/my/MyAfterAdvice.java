@@ -2,31 +2,28 @@ package com.eric.jimiopen.common.my;
 
 import java.lang.reflect.Method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.AfterReturningAdvice;
 
 import com.alibaba.fastjson.JSON;
 
 public class MyAfterAdvice implements AfterReturningAdvice {
 	
+	private static final Logger log = LoggerFactory.getLogger(MyAfterAdvice.class);
+
 	@Override
 	public void afterReturning(Object result, Method method, Object[] parameter, Object target) throws Throwable {
-		System.out.println("=======MyAfterAdvice=======");
-		System.out.println("result:"+JSON.toJSONString(result));
-		System.out.println("method:"+method);
-		if(parameter != null){
-			if(parameter.equals("")){
-				System.out.println("true");
-			} else {
-				System.out.println("false");
-			}
+		log.info("=======MyAfterAdvice=======");
+		log.info(MyAfterAdvice.class+"", "result", JSON.toJSONString(result));
+		log.info(MyAfterAdvice.class+"", "method:"+method);
+		if(parameter != null && parameter.length > 0){
 			for(Object o : parameter){
-				System.out.println("object:"+ JSON.toJSONString(o));
+				log.info("object:"+ JSON.toJSONString(o));
 			} 
-			System.out.println("hehehebbb");
 		}else {
-			System.out.println("hehehe");
+			log.info(MyAfterAdvice.class+"", "parameter is null");
 		}
-		System.out.println("parameter:"+parameter);
-		System.out.println("target:"+target);
+		log.info(MyAfterAdvice.class+"", "target", target);
 	}
 }

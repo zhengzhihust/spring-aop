@@ -22,6 +22,7 @@ public class PerfInterceptor implements MethodInterceptor {
 	private static long statLogFrequency = 10;
 	private static long methodWarningThreshold = 1000;
 
+	@Override
 	public Object invoke(MethodInvocation method) throws Throwable {
 		long start = System.currentTimeMillis();
 		try {
@@ -37,21 +38,21 @@ public class PerfInterceptor implements MethodInterceptor {
 			stats = new MethodStats(methodName);
 			methodStats.put(methodName, stats);
 		}
-		stats.count++;
-		stats.totalTime += elapsedTime;
-		if (elapsedTime > stats.maxTime) {
-			stats.maxTime = elapsedTime;
-		}
-
-		if (elapsedTime > methodWarningThreshold) {
-			logger.info("####method warning: " + methodName + "(), cnt = " + stats.count + ", lastTime = " + elapsedTime + ", maxTime = " + stats.maxTime);
-		}
-
-		if (stats.count % statLogFrequency == 0) {
-			long avgTime = stats.totalTime / stats.count;
-			long runningAvg = (stats.totalTime - stats.lastTotalTime) / statLogFrequency;
-			logger.info("####method: " + methodName + "(), cnt = " + stats.count + ", lastTime = " + elapsedTime + ", avgTime = " + avgTime + ", runningAvg = " + runningAvg + ", maxTime = " + stats.maxTime);
-			stats.lastTotalTime = stats.totalTime;
+		synchronized (stats) {
+			stats.count++;
+			stats.totalTime += elapsedTime;
+			if (elapsedTime > stats.maxTime) {
+				stats.maxTime = elapsedTime;
+			}
+			if (elapsedTime > methodWarningThreshold) {
+				logger.info("####method warning: " + methodName + "(), cnt = " + stats.count + ", lastTime = " + elapsedTime + ", maxTime = " + stats.maxTime);
+			}
+			if (stats.count % statLogFrequency == 0) {
+				long avgTime = stats.totalTime / stats.count;
+				long runningAvg = (stats.totalTime - stats.lastTotalTime) / statLogFrequency;
+				logger.info("####method: " + methodName + "(), cnt = " + stats.count + ", lastTime = " + elapsedTime + ", avgTime = " + avgTime + ", runningAvg = " + runningAvg + ", maxTime = " + stats.maxTime);
+				stats.lastTotalTime = stats.totalTime;
+			}
 		}
 	}
 }

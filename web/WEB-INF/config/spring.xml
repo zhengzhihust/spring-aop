@@ -11,21 +11,14 @@
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<context:component-scan base-package="com.eric.jimiopen"/>
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:/jdbc.properties</value>
-                <value>classpath:/memcached.properties</value>
-                <value>classpath:/redis.properties</value>
-                <value>classpath:/hessian.properties</value>
-            </list>
-        </property>
-    </bean>
+		<property name="locations">
+			<list>
+				<value>classpath:/jdbc.properties</value>
+				<value>classpath:/memcached.properties</value>
+				<value>classpath:/redis.properties</value>
+				<value>classpath:/hessian.properties</value>
+			</list>
+		</property>
+	</bean>
 	<bean class="com.eric.jimiopen.common.utils.context.SpringContextUtil" />
-	
-	<bean id="ipSeeker" class="com.zhenai.common.ipseek.IPSeekerImpl"/>
-	<bean id="ipSeekerService" class="com.zhenai.hn.modules.ipcode.service.impl.IPSeekerServiceImpl">
-		<property name="ipSeeker" ref="ipSeeker" />
-        <property name="dir" value="/WEB-INF/config" />
-		<property name="filename" value="qqwry.dat" />
-    </bean>
 </beans>

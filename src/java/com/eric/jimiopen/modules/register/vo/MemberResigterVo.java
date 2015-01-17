@@ -41,6 +41,8 @@ public class MemberResigterVo implements Serializable{
 	
 	private String valid;
 	
+	public MemberResigterVo(){}
+	
 	public String getMemberId() {
 		return memberId;
 	}

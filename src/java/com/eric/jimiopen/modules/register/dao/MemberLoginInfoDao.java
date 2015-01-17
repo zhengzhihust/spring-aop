@@ -8,4 +8,8 @@ public interface MemberLoginInfoDao {
 
 	public int updateLoginInfo(MemberLoginInfo loginInfo);
 
+	public void deleteRegisterInfo(Long memberId);
+
+	public MemberLoginInfo getMemberLoginInfo(Long memberId);
+
 }

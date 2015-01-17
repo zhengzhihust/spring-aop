@@ -8,4 +8,8 @@ public interface MemberBaseInfoDao {
 
 	public int updateBaseInfo(MemberBaseInfo baseInfo);
 
+	public void deleteRegisterInfo(Long memberId);
+
+	public MemberBaseInfo getMemberBaseInfo(Long memberId);
+
 }

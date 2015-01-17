@@ -1,10 +1,12 @@
 package com.eric.jimiopen.modules.register.service.impl;
 
-import java.util.Collection;
-
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eric.jimiopen.common.utils.logfactory.CommonUtil;
 import com.eric.jimiopen.modules.register.bean.MemberBaseInfo;
 import com.eric.jimiopen.modules.register.bean.MemberLoginInfo;
 import com.eric.jimiopen.modules.register.bean.MemberPhone;
@@ -29,16 +31,20 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	
 	@Autowired
 	private MemberPhoneDao phoneDao;
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberRegisterServiceImpl.class);
 
 	@Override
 	public Long saveMemberId() {
 		Long memberId = registerDao.saveMemberId();
 		return memberId;
 	}
-
 	
 	@Override
 	public int saveLoginInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberLoginInfo loginInfo = assemblyLoginInfo(resigterVo);
 		int count = loginInfoDao.saveLoginInfo(loginInfo);
 		return count;
@@ -46,6 +52,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 	@Override
 	public int saveBaseInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberBaseInfo baseInfo = assemblyBaseInfo(resigterVo);
 		int count = baseInfoDao.saveBaseInfo(baseInfo);
 		return count;
@@ -53,6 +62,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 	@Override
 	public int savePhoneInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberPhone memberPhone = assemblyPhoneInfo(resigterVo);
 		int count = phoneDao.savePhoneInfo(memberPhone);
 		return count;
@@ -60,6 +72,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 	@Override
 	public int updateBaseInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberBaseInfo baseInfo = assemblyBaseInfo(resigterVo);
 		int count = baseInfoDao.updateBaseInfo(baseInfo);
 		return  count;
@@ -67,6 +82,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 	@Override
 	public int updateLoginInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberLoginInfo loginInfo = assemblyLoginInfo(resigterVo);
 		int count = loginInfoDao.updateLoginInfo(loginInfo);
 		return count;
@@ -74,26 +92,80 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 	@Override
 	public int updatePhoneInfo(MemberResigterVo resigterVo) {
+		if(resigterVo == null){
+			return 0;
+		}
 		MemberPhone memberPhone = assemblyPhoneInfo(resigterVo);
 		int count = phoneDao.savePhoneInfo(memberPhone);
 		return count;
 	}
 
 	@Override
-	public int update(Collection collection) {
-		if(collection instanceof MemberBaseInfo){
+	public <T> int update(T obj) {
+		int count = 0;
+		if(obj != null){
+			if(obj instanceof MemberBaseInfo){
+				MemberBaseInfo baseInfo = (MemberBaseInfo)obj;
+				count = baseInfoDao.updateBaseInfo(baseInfo);
+			}
+			if(obj instanceof MemberLoginInfo){
+				MemberLoginInfo loginInfo = (MemberLoginInfo)obj;
+				count = loginInfoDao.updateLoginInfo(loginInfo);
+			}
+			if(obj instanceof MemberPhone){
+				MemberPhone memberPhone = (MemberPhone)obj;
+				count = phoneDao.updatePhoneInfo(memberPhone);
+			}
 		}
-		return 0;
+		return count;
 	}
 
 	@Override
 	public int validPhoneInfo(Long memberId, String phone, int status) {
-		return 0;
+		int count = 0;
+		if(memberId != null && memberId.longValue() > 0 && StringUtils.isNotBlank(phone) && status > 0){
+			count = phoneDao.validPhoneInfo(memberId, phone, status);
+		} else {
+			log.info(CommonUtil.getLoggerDes(MemberRegisterServiceImpl.class+"", "validPhoneInfo", "memberId:"+memberId, "phone:"+phone, "status:"+status));
+		}
+		return count;
 	}
 
 	@Override
-	public int deleteRegisterInfo(Long memberId) {
-		return 0;
+	public void deleteRegisterInfo(Long memberId) {
+		if(memberId == null || memberId.longValue() <= 0){
+			return;
+		}
+		loginInfoDao.deleteRegisterInfo(memberId);
+		baseInfoDao.deleteRegisterInfo(memberId);
+		phoneDao.deleteRegisterInfo(memberId);
+	}
+	
+	@Override
+	public MemberBaseInfo getMemberBaseInfo(Long memberId) {
+		MemberBaseInfo baseInfo = null;
+		if(memberId != null && memberId.longValue() > 0){
+			baseInfo = baseInfoDao.getMemberBaseInfo(memberId);
+		}
+		return baseInfo;
+	}
+
+	@Override
+	public MemberLoginInfo getMemberLoginInfo(Long memberId) {
+		MemberLoginInfo loginInfo = null;
+		if(memberId != null && memberId.longValue() > 0){
+			loginInfo = loginInfoDao.getMemberLoginInfo(memberId);
+		}
+		return loginInfo;
+	}
+
+	@Override
+	public MemberPhone getMemberPhoneInfo(Long memberId) {
+		MemberPhone memberPhone = null;
+		if(memberId != null && memberId.longValue() > 0){
+			memberPhone = phoneDao.getMemberPhoneInfo(memberId);
+		}
+		return memberPhone;
 	}
 	
 	private MemberBaseInfo assemblyBaseInfo(MemberResigterVo resigterVo){
@@ -107,4 +179,5 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	public MemberPhone assemblyPhoneInfo(MemberResigterVo resigterVo){
 		return null;
 	}
+
 }

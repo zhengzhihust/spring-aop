@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%-5level %logger{0} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+ 	
+	<logger name="com.zhenai" level="DEBUG" additivity="false">  
+    	<appender-ref ref="STDOUT"/>  
+  	</logger>
+	<logger name="org.springframework.jdbc" level="DEBUG" additivity="false">  
+    	<appender-ref ref="STDOUT"/>  
+  	</logger>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
+

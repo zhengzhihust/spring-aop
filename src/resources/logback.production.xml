@@ -5,7 +5,7 @@
 			<Pattern>%-5level %logger{0} - %msg%n</Pattern>
 		</encoder>
 	</appender>
-	<logger name="com.zhenai" level="INFO" additivity="false">  
+	<logger name="com.eric.jimiopen" level="INFO" additivity="false">  
     	<appender-ref ref="STDOUT"/>  
   	</logger>
 	<root>

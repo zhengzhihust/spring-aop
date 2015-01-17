@@ -6,7 +6,7 @@
 		</encoder>
 	</appender>
  	
-	<logger name="com.zhenai" level="DEBUG" additivity="false">  
+	<logger name="com.eric.jimiopen" level="DEBUG" additivity="false">  
     	<appender-ref ref="STDOUT"/>  
   	</logger>
 	<logger name="org.springframework.jdbc" level="DEBUG" additivity="false">  

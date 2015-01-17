@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eric.jimiopen.actions.BaseAct;
 import com.eric.jimiopen.common.constants.LoginReturnEnum;
+import com.eric.jimiopen.common.constants.LoginStatusConstant;
 import com.eric.jimiopen.modules.register.service.MemberRegisterService;
 
 @Controller
@@ -35,8 +36,17 @@ public class LoginAct extends BaseAct{
 		} else if(StringUtils.isBlank(pwd)){
 			return LoginRet(request, response, true, LoginReturnEnum.CODE_STATUS_2, null);
 		}
-		boolean isvalid = memberRegisterService.loginVerify(phone, pwd);
-		return null;
+		int count = memberRegisterService.loginVerify(phone, pwd);
+		switch(count){
+		case LoginStatusConstant.UNREGISTER:
+			return LoginRet(request, response, true, LoginReturnEnum.CODE_STATUS_3, null);
+		case LoginStatusConstant.LOGIN_FAILURE:
+			return LoginRet(request, response, true, LoginReturnEnum.CODE_STATUS_4, null);
+		case LoginStatusConstant.LOGIN_SUCCESS:
+			return "/content/index";
+			default:
+				return null;
+		}
 	}
 	
 	private String LoginRet(HttpServletRequest request,HttpServletResponse response, boolean isAjax, LoginReturnEnum loginReturnEnum, String url){

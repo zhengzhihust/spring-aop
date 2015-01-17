@@ -170,9 +170,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	}
 	
 	@Override
-	public boolean loginVerify(String phone, String pwd) {
-		boolean isValid = loginInfoDao.loginVerify(phone, pwd);
-		return isValid;
+	public int loginVerify(String phone, String pwd) {
+		int count = loginInfoDao.loginVerify(phone, pwd);
+		return count;
 	}
 	
 }

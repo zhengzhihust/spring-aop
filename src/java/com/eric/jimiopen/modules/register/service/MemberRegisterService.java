@@ -33,5 +33,5 @@ public interface MemberRegisterService {
 	
 	public MemberPhone getMemberPhoneInfo(Long memberId);
 
-	public boolean loginVerify(String phone, String pwd);
+	public int loginVerify(String phone, String pwd);
 }

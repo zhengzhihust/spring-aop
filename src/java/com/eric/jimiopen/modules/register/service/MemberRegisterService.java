@@ -1,5 +1,7 @@
 package com.eric.jimiopen.modules.register.service;
 
+import java.util.Collection;
+
 import com.eric.jimiopen.modules.register.vo.MemberResigterVo;
 
 public interface MemberRegisterService {
@@ -18,7 +20,7 @@ public interface MemberRegisterService {
 
 	public int updatePhoneInfo(MemberResigterVo resigterVo);
 	
-	public int updateLoginStatus(Class clazz);
+	public int update(Collection collection);
 	
 	public int validPhoneInfo(Long memberId, String phone, int status);
 	

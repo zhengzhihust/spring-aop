@@ -1,5 +1,7 @@
 package com.eric.jimiopen.modules.register.service.impl;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		return memberId;
 	}
 
+	
 	@Override
 	public int saveLoginInfo(MemberResigterVo resigterVo) {
 		MemberLoginInfo loginInfo = assemblyLoginInfo(resigterVo);
@@ -77,7 +80,9 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	}
 
 	@Override
-	public int updateLoginStatus(Class clazz) {
+	public int update(Collection collection) {
+		if(collection instanceof MemberBaseInfo){
+		}
 		return 0;
 	}
 

@@ -1,5 +1,10 @@
 /.settings
 /.classpath
 /.project
-/.gitignore
-/build-lib
+/web/WEB-INF/classes
+
+!/web/WEB-INF/lib/commons-codec.jar
+!/web/WEB-INF/lib/commons-httpclient-3.1.jar
+!/web/WEB-INF/lib/commons-logging-1.1.jar
+!/web/WEB-INF/lib/jackson-all-1.8.5.jar
+!/web/WEB-INF/lib/log4j-1.2.16.jar

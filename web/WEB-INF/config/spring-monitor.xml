@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean name="beforeAdvice" class="com.eric.jimiopen.common.my.MyBeforeAdvice" />
+	<bean name="aroundAdvice" class="com.eric.jimiopen.common.my.MyAroundAdvice" />
+	<bean name="afterAdvice" class="com.eric.jimiopen.common.my.MyAfterAdvice" />
+	<bean name="throwsAdvice" class="com.eric.jimiopen.common.my.MyThrowsAdvice" />
+	<bean id="servTarget" class="com.eric.jimiopen.common.my.interf.impl.Serv" />
+
+	<bean id="invoker" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="${eric.interf.register.service}" />
+		<property name="target" ref="servTarget" />
+		<property name="singleton" value="false" />
+		<property name="interceptorNames">
+			<list>
+				<value>beforeAdvice</value>
+				<value>aroundAdvice</value>
+				<value>afterAdvice</value>
+				<value>afterAdvice</value>
+				<value>throwsAdvice</value>
+			</list>
+		</property>
+	</bean>
+</beans>

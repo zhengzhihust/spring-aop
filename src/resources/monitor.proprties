@@ -1,0 +1,11 @@
+#monitor interface
+
+eric.interf.register.service=com.eric.jimiopen.modules.register.service.MemberRegisterService
+
+eric.interf.register.baseinfo.dao=com.eric.jimiopen.modules.register.dao.MemberBaseInfoDao
+
+eric.interf.register.logininfo.dao=com.eric.jimiopen.modules.register.dao.MemberLoginInfoDao
+
+eric.interf.register.phone.dao=com.eric.jimiopen.modules.register.dao.MemberPhoneDao
+
+eric.interf.register.register.dao=com.eric.jimiopen.modules.register.dao.MemberRegisterDao

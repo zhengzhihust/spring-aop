@@ -2,6 +2,9 @@
 /.classpath
 /.project
 /web/WEB-INF/classes
+/build-lib
+/web/WEB-INF/lib
+/web/META-INF
 
 *.tmp
 *.class
@@ -11,4 +14,6 @@
 !/web/WEB-INF/lib/commons-logging-1.1.jar
 !/web/WEB-INF/lib/jackson-all-1.8.5.jar
 !/web/WEB-INF/lib/log4j-1.2.16.jar
-/build-lib
+!/web/WEB-INF/classes/spring-monitor.xml
+
+

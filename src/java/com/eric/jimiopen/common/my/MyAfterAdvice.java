@@ -15,15 +15,15 @@ public class MyAfterAdvice implements AfterReturningAdvice {
 	@Override
 	public void afterReturning(Object result, Method method, Object[] parameter, Object target) throws Throwable {
 		log.info("=======MyAfterAdvice=======");
-		log.info(MyAfterAdvice.class+"", "result", JSON.toJSONString(result));
-		log.info(MyAfterAdvice.class+"", "method:"+method);
+		log.info("[方法调用名]"+MyAfterAdvice.class+"", "result", JSON.toJSONString(result));
+		log.info("[方法调用名]"+MyAfterAdvice.class+"", "method:"+method);
 		if(parameter != null && parameter.length > 0){
 			for(Object o : parameter){
-				log.info("object:"+ JSON.toJSONString(o));
+				log.info("[方法调用名]"+"object:"+ JSON.toJSONString(o));
 			} 
 		}else {
-			log.info(MyAfterAdvice.class+"", "parameter is null");
+			log.info("[方法调用名]"+MyAfterAdvice.class+"", "parameter is null");
 		}
-		log.info(MyAfterAdvice.class+"", "target", target);
+		log.info("[方法调用名]"+MyAfterAdvice.class+"", "target", target);
 	}
 }

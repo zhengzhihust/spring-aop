@@ -12,4 +12,6 @@ public interface MemberLoginInfoDao {
 
 	public MemberLoginInfo getMemberLoginInfo(Long memberId);
 
+	public int loginVerify(String phone, String pwd);
+
 }

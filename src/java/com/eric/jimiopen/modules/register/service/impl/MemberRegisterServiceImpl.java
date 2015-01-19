@@ -16,6 +16,7 @@ import com.eric.jimiopen.modules.register.dao.MemberPhoneDao;
 import com.eric.jimiopen.modules.register.dao.MemberRegisterDao;
 import com.eric.jimiopen.modules.register.service.MemberRegisterService;
 import com.eric.jimiopen.modules.register.vo.MemberResigterVo;
+import com.eric.jimiopen.modules.register.vo.RegVoTransformator;
 
 @Service
 public class MemberRegisterServiceImpl implements MemberRegisterService {
@@ -45,7 +46,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberLoginInfo loginInfo = assemblyLoginInfo(resigterVo);
+		MemberLoginInfo loginInfo = RegVoTransformator.assemblyLoginInfo(resigterVo);
 		int count = loginInfoDao.saveLoginInfo(loginInfo);
 		return count;
 	}
@@ -55,7 +56,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberBaseInfo baseInfo = assemblyBaseInfo(resigterVo);
+		MemberBaseInfo baseInfo = RegVoTransformator.assemblyBaseInfo(resigterVo);
 		int count = baseInfoDao.saveBaseInfo(baseInfo);
 		return count;
 	}
@@ -65,7 +66,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberPhone memberPhone = assemblyPhoneInfo(resigterVo);
+		MemberPhone memberPhone = RegVoTransformator.assemblyPhoneInfo(resigterVo);
 		int count = phoneDao.savePhoneInfo(memberPhone);
 		return count;
 	}
@@ -75,7 +76,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberBaseInfo baseInfo = assemblyBaseInfo(resigterVo);
+		MemberBaseInfo baseInfo = RegVoTransformator.assemblyBaseInfo(resigterVo);
 		int count = baseInfoDao.updateBaseInfo(baseInfo);
 		return  count;
 	}
@@ -85,7 +86,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberLoginInfo loginInfo = assemblyLoginInfo(resigterVo);
+		MemberLoginInfo loginInfo = RegVoTransformator.assemblyLoginInfo(resigterVo);
 		int count = loginInfoDao.updateLoginInfo(loginInfo);
 		return count;
 	}
@@ -95,7 +96,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		if(resigterVo == null){
 			return 0;
 		}
-		MemberPhone memberPhone = assemblyPhoneInfo(resigterVo);
+		MemberPhone memberPhone = RegVoTransformator.assemblyPhoneInfo(resigterVo);
 		int count = phoneDao.savePhoneInfo(memberPhone);
 		return count;
 	}
@@ -168,16 +169,10 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		return memberPhone;
 	}
 	
-	private MemberBaseInfo assemblyBaseInfo(MemberResigterVo resigterVo){
-		return null;
+	@Override
+	public int loginVerify(String phone, String pwd) {
+		int count = loginInfoDao.loginVerify(phone, pwd);
+		return count;
 	}
 	
-	private MemberLoginInfo assemblyLoginInfo(MemberResigterVo resigterVo){
-		return null;
-	}
-	
-	public MemberPhone assemblyPhoneInfo(MemberResigterVo resigterVo){
-		return null;
-	}
-
 }

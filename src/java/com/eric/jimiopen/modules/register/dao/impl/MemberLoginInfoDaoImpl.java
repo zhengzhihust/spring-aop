@@ -31,4 +31,9 @@ public class MemberLoginInfoDaoImpl implements MemberLoginInfoDao {
 		return null;
 	}
 
+	@Override
+	public int loginVerify(String phone, String pwd) {
+		return 0;
+	}
+
 }

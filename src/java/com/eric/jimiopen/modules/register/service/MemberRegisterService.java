@@ -32,4 +32,6 @@ public interface MemberRegisterService {
 	public MemberLoginInfo getMemberLoginInfo(Long memberId);
 	
 	public MemberPhone getMemberPhoneInfo(Long memberId);
+
+	public int loginVerify(String phone, String pwd);
 }
